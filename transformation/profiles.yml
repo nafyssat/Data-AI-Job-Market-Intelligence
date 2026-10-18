@@ -1,0 +1,8 @@
+# Base DuckDB locale ; le chemin vient de DUCKDB_PATH (voir .env.example).
+job_market_intelligence:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', '../data/job_market.duckdb') }}"
+      threads: 4

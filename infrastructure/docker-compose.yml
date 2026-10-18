@@ -1,0 +1,21 @@
+# Lancement depuis la racine : docker compose -f infrastructure/docker-compose.yml up --build
+services:
+  airflow:
+    build:
+      context: ..
+      dockerfile: airflow/Dockerfile
+    container_name: jmi-airflow
+    command: standalone   # scheduler + API/UI + dag-processor dans un seul conteneur (dev local)
+    env_file: ../.env
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      DUCKDB_PATH: /opt/project/data/job_market.duckdb
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../airflow/dags:/opt/airflow/dags
+      - ..:/opt/project
+      - airflow_home:/opt/airflow
+
+volumes:
+  airflow_home:

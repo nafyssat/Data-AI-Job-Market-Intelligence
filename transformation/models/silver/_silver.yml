@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: stg_france_travail__job_offers
+    description: Dernière version de chaque offre France Travail.
+    columns:
+      - name: job_offer_id
+        data_tests: [not_null, unique]
